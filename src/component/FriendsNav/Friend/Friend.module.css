@@ -1,0 +1,16 @@
+.item {
+
+}
+
+.itemAvatar {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 30px;
+    background-color: green;
+
+}
+
+.itemName {
+    text-align: center;
+}
