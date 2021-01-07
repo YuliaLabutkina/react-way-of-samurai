@@ -1,18 +1,16 @@
 import DialogItem from './DialogItem';
 import Message from './Message';
 import s from './Dialogs.module.css';
-import { sendMassageCreator, updateNewMessageBodyCreator } from '../../redux/dialogs-reducer';
 
 
-const Dialogs = ({ messagesPage, dispatch }) => {
-    const { messages, users, newMessagesBody } = messagesPage;
+const Dialogs = ({ messages, users, newMessagesBody, sendMessage, messageChange }) => {
     
     const onSendMessageClick = () => {
-        dispatch(sendMassageCreator());
+        sendMessage();
     };
 
     const onNewMessageChange = ({ target }) => {
-        dispatch(updateNewMessageBodyCreator(target.value));
+        messageChange(target.value);
     };
 
     return (

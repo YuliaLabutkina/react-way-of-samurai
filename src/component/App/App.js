@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from '../Header';
 import NavBar from '../NavBar';
 import Profile from '../Profile';
-import Dialogs from '../Dialogs';
+import DialogsContainer from '../Dialogs/DialogsContainer';
 import News from '../News';
 import Music from '../Music';
 import Settings from '../Settings';
@@ -22,7 +22,7 @@ const App = ({ state, dispatch}) => {
               <NavBar friends={friends}/>
               <div className={s.wrapperContent}>
                 <Route path='/profile' render={() => <Profile posts={posts} newPostText={newPostText} dispatch={dispatch} />}/>
-            <Route path='/dialogs' render={() => <Dialogs dispatch={dispatch} messagesPage={state.messagesPage} />} />
+            <Route path='/dialogs' render={() => <DialogsContainer dispatch={dispatch} messagesPage={state.messagesPage} />} />
                 <Route path='/news' render={() => <News />} />
                 <Route path='/music' render={() => <Music />} />
                 <Route path='/settings' render={() => <Settings />} />

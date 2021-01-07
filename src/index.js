@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import 'modern-normalize/modern-normalize.css';
 import './index.css';
 
@@ -10,7 +11,9 @@ import App from './component/App';
 const renderEntireTree = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+      <Provider store={store}>
+        <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
