@@ -1,24 +1,41 @@
-import { useEffect } from 'react';
+import React from 'react';
+import axios from 'axios';
 import User from './User';
+import s from './UserPage.module.css';
 
-const UsersPage = ({ users, follow, unfollow, setUsers }) => {
-    console.log('hi')
+class UsersPage extends React.Component {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(({ data }) => {
+                this.props.setUsers(data.items);
+                this.props.getTotalUsersCount(data.totalCount);
+        })
+    };
 
-    useEffect(() => {
-        if (users.length === 0) {
-        setUsers([
-        { "id": 1, photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg', followed: false, fullName: 'Artem', status: 'I am a boss', location: { city: 'Vinnitsa', country: 'Ukraine' } },
-        { "id": 2, photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg', followed: true, fullName: 'Illya', status: 'I am a boss too', location: { city: 'Vinnitsa', country: 'Ukraine' } },
-        { "id": 3, photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg', followed: false, fullName: 'Alex', status: 'I am a boss too', location: {city: 'Vinnitsa', country: 'Ukraine'}},
-    ])
-    }
-    }, [])
+    onPageChanged(pageNumber) {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(({ data }) => this.props.setUsers(data.items));
 
-    return (
-        <ul>
-            {users.length !== 0 && users.map(user => <User key={user.id} user={user} follow={follow} unfollow={unfollow} />)}
-        </ul>
-    )
+    };
+
+    render() {
+        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        const pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
+        }
+        return (
+            <>
+                <div>
+                    {pages.map(page => <span key={page} onClick={() => this.onPageChanged(page)} className = { this.props.currentPage === page ? s.selectedPage : null }>{page}</span>)}
+                </div>
+                <ul>
+                   {this.props.users.length !== 0 && this.props.users.map(user => <User key={user.id} user={user} follow={this.props.follow} unfollow={this.props.unfollow} />)}
+                </ul>
+            </>
+        )
+    };
 };
 
 export default UsersPage;
