@@ -15,10 +15,6 @@ const User = ({ user, follow, unfollow }) => {
                 <div>{name}</div>
                 <div>{status}</div>
             </div>
-            {/* <div>
-                <div>{country}</div>
-                <div>{city}</div>
-            </div> */}
         </li>
     )
 };
