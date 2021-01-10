@@ -2,11 +2,11 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo';
 // import s from './Profile.module.css';
 
-const Profile = ({posts, newPostText, dispatch}) => {
+const Profile = ({profile}) => {
     return (
         <div>
-            <ProfileInfo />
-            <MyPostsContainer posts={posts} dispatch={dispatch} newPostText={newPostText} />
+            <ProfileInfo profile={profile}/>
+            <MyPostsContainer />
         </div>
     )
 };

@@ -6,8 +6,6 @@ import s from './MyPosts.module.css';
 const MyPosts = ({ posts, newPostText, updateNewPost, addPosts }) => {
     const newPostElement = React.createRef();
 
-    console.log(posts);
-
     const onAddPosts = () => {
         addPosts();
     };

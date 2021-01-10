@@ -2,18 +2,16 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from '../Header';
 import NavBar from '../NavBar';
-import Profile from '../Profile';
+import ProfileContainer from '../Profile/ProfileContainer';
 import UsersContainer from '../UsersPage/UsersContainer';
 import DialogsContainer from '../Dialogs/DialogsContainer';
-import News from '../News';
 import Music from '../Music';
 import Settings from '../Settings';
 import FriendsPage from '../FriendsPage';
 
 import s from './App.module.css';
 
-const App = ({ state, dispatch}) => {
-    const { posts, newPostText } = state.profilePage;
+const App = ({ state}) => {
     const { friends } = state.sideBar;
 
     return (
@@ -22,10 +20,9 @@ const App = ({ state, dispatch}) => {
               <Header />
               <NavBar friends={friends}/>
               <div className={s.wrapperContent}>
-                <Route path='/profile' render={() => <Profile posts={posts} newPostText={newPostText} dispatch={dispatch} />}/>
-                <Route path='/dialogs' render={() => <DialogsContainer dispatch={dispatch} messagesPage={state.messagesPage} />} />
+                <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
+                <Route path='/dialogs' render={() => <DialogsContainer />} />
                 <Route path='/users' render={() => <UsersContainer />} />
-                <Route path='/news' render={() => <News />} />
                 <Route path='/music' render={() => <Music />} />
                 <Route path='/settings' render={() => <Settings />} />
                 <Route path='/friends' render={() => <FriendsPage />} />
