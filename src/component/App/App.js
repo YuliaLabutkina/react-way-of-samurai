@@ -1,6 +1,6 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Header from '../Header';
+import HeaderContainer from '../Header/HeaderContainer';
 import NavBar from '../NavBar';
 import ProfileContainer from '../Profile/ProfileContainer';
 import UsersContainer from '../UsersPage/UsersContainer';
@@ -17,7 +17,7 @@ const App = ({ state}) => {
     return (
         <BrowserRouter>
             <div className={s.appWrapper}>
-              <Header />
+              <HeaderContainer />
               <NavBar friends={friends}/>
               <div className={s.wrapperContent}>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
