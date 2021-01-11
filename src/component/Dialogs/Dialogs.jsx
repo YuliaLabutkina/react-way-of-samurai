@@ -2,9 +2,7 @@ import DialogItem from './DialogItem';
 import Message from './Message';
 import s from './Dialogs.module.css';
 
-
 const Dialogs = ({ messages, users, newMessagesBody, sendMessage, messageChange }) => {
-    
     const onSendMessageClick = () => {
         sendMessage();
     };

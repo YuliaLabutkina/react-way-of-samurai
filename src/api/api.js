@@ -13,23 +13,24 @@ const instance = Axios.create({
 
 export const usersAPI = {
     getUsers(currentPage, pageSize) {
-      return instance.get((`users?page=${currentPage}&count=${pageSize}`)).then(({ data }) => data);
+        return instance.get((`users?page=${currentPage}&count=${pageSize}`)).then(({ data }) => data);
     },
 
     followUser(id) {
-      return instance.post(`follow/${id}`, {}).then(({ data }) => data);
+        return instance.post(`follow/${id}`, {}).then(({ data }) => data);
     },
 
     unFollowUser(id) {
-      return instance.delete(`follow/${id}`).then(({ data }) => data);
+        return instance.delete(`follow/${id}`).then(({ data }) => data);
     },
-}
 
+    getUserProfile(userId) {
+        return instance.get(`profile/${userId}`).then(({ data }) => data);
+    },
+}; 
 
-// export const getUsers = (currentPage, pageSize) => {
-//     return instance.get((`users?page=${currentPage}&count=${pageSize}`)).then(({ data }) => data);
-// };
-
-// export const followUser = (id) => {
-//     return instance.post(`follow/${id}`, {}).then(({ data }) => data);
-// };
+export const authAPI = {
+    authLogin() {
+        return instance.get(`auth/me`).then(({ data }) => data);
+    },
+};
