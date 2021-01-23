@@ -1,9 +1,16 @@
+import LoginReduxForm from './LoginForm';
 
+const LoginPage = (props) => {
+    const onSubmit = (formData) => {
+        console.log(formData)
+    };
 
-const LoginPage = () => {
     return (
-        <div>Login</div>
-    )
+        <>
+            <h1>Login</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
+        </>
+    );
 };
 
 export default LoginPage;

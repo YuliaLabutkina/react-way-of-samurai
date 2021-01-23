@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { setCurrentPage, toggleFollowingProgress, getUser, follow, unfollow } from '../../redux/users-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import UsersPage from './UsersPage';
-import PreLoader from '../PreLoader';
+import PreLoader from '../common/PreLoader';
 
 class UsersApiComponent extends React.Component {
     componentDidMount() {

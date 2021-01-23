@@ -1,8 +1,8 @@
-import PreLoader from '../../PreLoader';
+import PreLoader from '../../common/PreLoader';
 import ProfileStatus from './ProfileStatus';
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = ({ profile }) => {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
     if (!profile) {
         return <PreLoader />
     }
@@ -13,7 +13,7 @@ const ProfileInfo = ({ profile }) => {
             </div> */}
             <div className={s.descriptionBlok}>
                 <img src={profile.photos.large} alt="photos"/>
-                <ProfileStatus status={"Hello world!"}/>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
         </>
     )
