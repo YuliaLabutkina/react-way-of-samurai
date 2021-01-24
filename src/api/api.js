@@ -23,10 +23,6 @@ export const usersAPI = {
     unFollowUser(id) {
         return instance.delete(`follow/${id}`).then(({ data }) => data);
     },
-
-    // getUserProfile(userId) {
-    //     return instance.get(`profile/${userId}`).then(({ data }) => data);
-    // },
 }; 
 
 export const profileAPI = {
@@ -39,7 +35,6 @@ export const profileAPI = {
         return instance.get(`profile/status/${userId}`).then(({ data }) => data);
     },
 
-
     updateStatus(status) {
         return instance.put(`profile/status`, { status }).then(({ data }) => data);
     }
@@ -48,5 +43,13 @@ export const profileAPI = {
 export const authAPI = {
     authLogin() {
         return instance.get(`auth/me`).then(({ data }) => data);
+    },
+
+    login(email, password, rememberMe = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe}).then(({ data }) => data);
+    },
+
+    logout() {
+        return instance.delete(`auth/login`).then(({ data }) => data);
     },
 };
