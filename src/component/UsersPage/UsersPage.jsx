@@ -2,11 +2,12 @@ import User from './User';
 import s from './UsersPage.module.css';
 
 const UsersPage = ({ onPageChanged, totalUsersCount, pageSize, currentPage, users, followingInProgress, follow, unfollow }) => {
+    
     const pagesCount = Math.ceil(totalUsersCount / pageSize);
         const pages = [];
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
-        }
+    }
     return (
         <>
             <div className={s.pagination}>

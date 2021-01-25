@@ -1,1 +1,1 @@
-export { default } from './ProfileStatus';
+export { default } from './ProfileStatusWithHooks';

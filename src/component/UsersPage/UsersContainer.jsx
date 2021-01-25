@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { setCurrentPage, toggleFollowingProgress, getUser, follow, unfollow } from '../../redux/users-reducer';
-import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { setCurrentPage, toggleFollowingProgress, requestUser, follow, unfollow } from '../../redux/users-reducer';
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/users-selectors';
 import UsersPage from './UsersPage';
 import PreLoader from '../common/PreLoader';
 
 class UsersApiComponent extends React.Component {
     componentDidMount() {
-        this.props.getUser(this.props.currentPage, this.props.pageSize);
+        this.props.requestUser(this.props.currentPage, this.props.pageSize);
     };
 
     onPageChanged = (pageNumber) => {
-        this.props.getUser(pageNumber, this.props.pageSize);
+        this.props.requestUser(pageNumber, this.props.pageSize);
     };
 
     render() {
@@ -35,13 +35,22 @@ class UsersApiComponent extends React.Component {
     };
 };
 
+// const mapStateToProps = (state) => ({
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress,
+// });
+
 const mapStateToProps = (state) => ({
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
 });
 
 export default compose(
@@ -49,8 +58,7 @@ export default compose(
     {
         setCurrentPage,
         toggleFollowingProgress,
-        getUser,
+        requestUser,
         follow,
         unfollow
-    }),
-    withAuthRedirect)(UsersApiComponent);
+    }))(UsersApiComponent);

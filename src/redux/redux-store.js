@@ -9,6 +9,7 @@ import dialogsReducer from './dialogs-reducer';
 import sideBarReducer from './sideBar-reducer';
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
+import appReducer from './app-reducer';
 
 const rootReducer = combineReducers({
   profilePage: profileReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   sideBar: sideBarReducer,
   usersPage: usersReducer,
   auth: authReducer,
+  app: appReducer,
   form: formReducer,
 });
 
