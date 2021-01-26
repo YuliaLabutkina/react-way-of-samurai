@@ -1,8 +1,8 @@
 import {profileAPI} from '../api/api';
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
+const ADD_POST = "profile/ADD-POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
 
 const initialState = {
     posts: [
@@ -39,24 +39,21 @@ export const addPostActionCreator = (profileAddNewPostForm) =>  ({ type: ADD_POS
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 
-export const getUserProfile = (userId) => (dispatch) => {
-    profileAPI.getUserProfile(userId).then(data => {
-        dispatch(setUserProfile(data));
-    });
+export const getUserProfile = (userId) => async (dispatch) => {
+    const result = await profileAPI.getUserProfile(userId);
+    dispatch(setUserProfile(result));
 };
 
-export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(data => {
-        dispatch(setStatus(data));
-    });
+export const getStatus = (userId) => async (dispatch) => {
+    const result = await profileAPI.getStatus(userId);
+    dispatch(setStatus(result));
 };
 
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setStatus(status));
-        }
-    });
+export const updateStatus = (status) => async (dispatch) => {
+    const {resultCode} = await profileAPI.updateStatus(status)
+    if (resultCode === 0) {
+      dispatch(setStatus(status));
+    };
 };
 
 export default profileReducer;

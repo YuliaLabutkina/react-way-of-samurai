@@ -1,5 +1,9 @@
-.usersList {
+.selectedPage {
+    font-weight: bold;
+}
+
+.pagination {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-};
+}
