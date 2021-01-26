@@ -1,9 +1,19 @@
 .selectedPage {
+    font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.pageNumber {
+    cursor: pointer;
+    font-weight: bold;
+
 }
 
 .pagination {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
+    padding-top: 10px;
 }

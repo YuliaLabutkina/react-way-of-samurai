@@ -31,7 +31,7 @@ const Paginator = () => {
     return (
         <div className={s.pagination}>
             {portionNumber > 1 && <button onClick={() => {setPortionNumber(portionNumber - 1)}}>Prev</button>}
-            {pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber).map(page => <span key={page} onClick={() => onPageChanged(page)} className={currentPage === page ? s.selectedPage : null}>{page}</span>)}
+            {pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber).map(page => <span key={page} onClick={() => onPageChanged(page)} className={currentPage === page ? s.selectedPage : s.pageNumber}>{page}</span>)}
             {portionCount > portionNumber && <button onClick={() => { setPortionNumber(portionNumber + 1) }}>Netx</button>}
         </div>
     );

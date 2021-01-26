@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getStatus } from '../../../../redux/profile-selector';
 import { updateStatus } from '../../../../redux/profile-reducer';
 
+import s from './ProfileStatus.module.css';
+
 const ProfileStatusWithHooks = () => {
     const dispatch = useDispatch();
     const status = useSelector(getStatus);
@@ -28,18 +30,20 @@ const ProfileStatusWithHooks = () => {
     }, [status]);
 
     return (
-            <>
+            <div>
                 {!editMode &&
-                    <div>
-                        <span onDoubleClick={activateEditMode}>{userStatus || "---"}</span>
-                    </div>
+                <div>
+                    <span className={s.status}>Status: </span>
+                    <span onDoubleClick={activateEditMode}>{userStatus || "---"}</span>
+                </div>
                 }
                 {editMode &&
-                    <div>
-                        <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={userStatus}></input>
-                    </div>
+                <div>
+                    <span className={s.status}>Status: </span>
+                    <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={userStatus}></input>
+                </div>
                 }
-            </>
+            </div>
         );
 };
 
